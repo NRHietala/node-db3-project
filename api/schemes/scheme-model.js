@@ -8,23 +8,32 @@ const findById = id => {
   return db("schemes").where("id", id).first();
 };
 
-const findSteps = () => {};
+const findSteps = id => {};
 
 const add = schemeData => {
   return db("schemes")
     .insert(schemeData)
-    .then(() => db("schemes"));
+    .then(([id]) => db("schemes").where("id", id).first());
 };
 
-const addSteps = () => {};
+const update = (changes, id) => {
+  return db("schemes")
+    .where("id", id)
+    .update(changes)
+    .then(() => {
+      return db("schemes").where("id", id).first();
+    });
+};
 
-const remove = () => {};
+const remove = id => {
+  return db("schemes").where("id", id).del();
+};
 
 module.exports = {
   find,
   findById,
   findSteps,
   add,
-  addSteps,
+  update,
   remove,
 };
