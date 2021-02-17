@@ -4,11 +4,15 @@ const find = () => {
   return db("schemes");
 };
 
-const findById = () => {};
+const findById = id => {
+  return db("schemes").where("id", id).first();
+};
 
 const findSteps = () => {};
 
 const add = () => {};
+
+const addSteps = () => {};
 
 const remove = () => {};
 
@@ -17,5 +21,6 @@ module.exports = {
   findById,
   findSteps,
   add,
+  addSteps,
   remove,
 };
