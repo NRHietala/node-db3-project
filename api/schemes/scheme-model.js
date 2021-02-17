@@ -10,7 +10,11 @@ const findById = id => {
 
 const findSteps = () => {};
 
-const add = () => {};
+const add = schemeData => {
+  return db("schemes")
+    .insert(schemeData)
+    .then(() => db("schemes"));
+};
 
 const addSteps = () => {};
 
