@@ -8,7 +8,13 @@ const findById = id => {
   return db("schemes").where("id", id).first();
 };
 
-const findSteps = id => {};
+const findSteps = id => {
+  return db("steps")
+    .select("schemes.scheme_name", "steps.step_number", "steps.instructions")
+    .join("schemes", "schemes.id", "steps.scheme_id")
+    .where({ scheme_id: id })
+    .orderBy("steps.step_number");
+};
 
 const add = schemeData => {
   return db("schemes")
